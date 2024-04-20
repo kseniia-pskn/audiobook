@@ -27,17 +27,22 @@ struct BookPlayerView: View {
                 
                 VStack(spacing: 12.0){
                     Text("KEY POINT \(viewStore.currentChapter) OF \(viewStore.totalChapters)")
-                        .font(.headline)
+                        .font(.system(size: 18, weight: .medium, design: .default))
                         .foregroundColor(.init(hex: "#999592"))
                         .padding(.bottom)
                     
                     Text("When the heart speaks, the mind finds it indecent to object.")
-                        .font(.system(size: 14, weight: .thin, design: .default))
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.system(size: 16, weight: .regular, design: .default))
+                        .padding(.horizontal, 24.0)
                 }
             }
             
             HStack(spacing: 10.0) {
                 Text(viewStore.playbackPositionString)
+                    .font(.system(size: 14, weight: .regular, design: .default))
+                    .foregroundColor(.init(hex: "#999592"))
                 Slider(
                     value: viewStore.binding(
                         get: \.sliderValue,
@@ -46,6 +51,8 @@ struct BookPlayerView: View {
                     onEditingChanged: sliderEditingChanged
                 )
                 Text(viewStore.totalDurationString)
+                    .font(.system(size: 14, weight: .regular, design: .default))
+                    .foregroundColor(.init(hex: "#999592"))
             }
             .padding(.horizontal)
             
@@ -76,7 +83,6 @@ struct BookPlayerView: View {
         }
         .background(Color.init(hex: "fff8f4").edgesIgnoringSafeArea(.all))
         .onAppear(perform: {
-            // Initialize or load your audio track here if needed
         })
         
     }
